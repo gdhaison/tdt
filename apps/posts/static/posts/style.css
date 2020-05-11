@@ -1,0 +1,9 @@
+.post {
+  border: 2px solid gray;
+	border-radius: 5px;
+	margin-top: 20px;
+}
+
+.content {
+	margin-left: 15px
+}

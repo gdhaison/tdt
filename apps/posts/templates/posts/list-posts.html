@@ -1,0 +1,22 @@
+{% extends "layouts/layout.html" %}
+{% block title %}
+    List Post | {{ block.super }}
+{% endblock title %}
+{% block content %}
+<center><h2><strong>New feeds</strong></h2></center>
+  <hr>
+  {% if posts %}
+    {% for post in posts %}
+      <div class="post">
+        <div class="content">
+          <p><strong>Posted by:</strong> {{post.user.name}} <strong>at</strong> {{post.pub_date}}</p>
+          <h5><span class="glyphicon glyphicon-time"></span></h5>
+          <p>{{post.content}}</p>
+          <br><br>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <center><h2>There is no posts</h2></center>
+  {% endif %}
+{% endblock content %}
