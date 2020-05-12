@@ -12,7 +12,7 @@ class Post(models.Model):
         return str(self.id)
 
     def get_absolute_url(self):
-        return reverse('posts:list-posts', kwargs={})
+        return reverse('root', kwargs={})
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -3,20 +3,25 @@
     List Post | {{ block.super }}
 {% endblock title %}
 {% block content %}
-<center><h2><strong>New feeds</strong></h2></center>
-  <hr>
-  {% if posts %}
-    {% for post in posts %}
-      <div class="post">
-        <div class="content">
-          <p><strong>Posted by:</strong> {{post.user.name}} <strong>at</strong> {{post.pub_date}}</p>
-          <h5><span class="glyphicon glyphicon-time"></span></h5>
-          <p>{{post.content}}</p>
-          <br><br>
+  {% if user.is_authenticated %}
+    <center><h2><strong>New feeds</strong></h2></center>
+    <hr>
+    {% if posts %}
+      {% for post in posts %}
+        <div class="post">
+          <div class="content">
+            <p><strong>Posted by:</strong> {{post.user.name}} <strong>at</strong> {{post.pub_date}}</p>
+            <h5><span class="glyphicon glyphicon-time"></span></h5>
+            <p>{{post.content}}</p>
+            <br><br>
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    {% else %}
+      <center><h2>There is no posts</h2></center>
+    {% endif %}
   {% else %}
-    <center><h2>There is no posts</h2></center>
+    <center><h1>Welcome to Twitter, login to continue</h1></center>
+    <center><a class="btn btn-primary btn-lg" href="{% url 'login' %}">Login</a></center>
   {% endif %}
 {% endblock content %}
