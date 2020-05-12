@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, FormView
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import Post
+from .forms import CreatePostForm
 
 class ListPostView(ListView):
     model = Post
@@ -11,3 +13,8 @@ class ListPostView(ListView):
           'posts': Post.objects.all()
         }
         return render(request, template_name, obj)
+
+class CreatePostView(FormView, CreateView):
+    template_name = 'posts/create-post.html'
+    form_class = CreatePostForm
+    success_message = 'Create Post Successfully'
