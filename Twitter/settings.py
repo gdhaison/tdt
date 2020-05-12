@@ -54,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Twitter.urls'
+LOGIN_REDIRECT_URL = 'root'
 
 TEMPLATES = [
     {
