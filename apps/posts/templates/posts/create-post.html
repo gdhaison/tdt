@@ -7,13 +7,13 @@
   <hr>
   <div class="card-body">
     <div class="table-responsive">
-      <form action="{% url 'posts:create-post' %}" method="POST">
+      <form action="{% url 'posts:create-like' %}" method="POST">
         {% csrf_token %}
         <div class="form-group">
           <label for="comment">Content<span style="color: red">*</span> :</label>
           <textarea class="form-control" rows="5" name="content" required></textarea>
         </div>
-        <input type="hidden" id="UserId" name="user" value=1>
+        <input type="hidden" id="UserId" name="user" value="{{user.id}}">
         <button class="btn btn-secondary" type="submit">Create Post</button>
       </form>
     </div>
