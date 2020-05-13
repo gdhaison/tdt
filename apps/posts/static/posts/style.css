@@ -2,8 +2,50 @@
   border: 2px solid gray;
 	border-radius: 5px;
 	margin-top: 20px;
+	margin-left: 100px;
+	margin-right: -100px
 }
 
 .content {
 	margin-left: 15px
 }
+
+#cmt {
+	margin-left: 10px;
+	height: 50px;
+	width: 300px;
+}
+
+#cmt-form {
+	margin-left: 200px;
+}
+
+.thumbnail {
+    padding:0px;
+}
+.panel {
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
+

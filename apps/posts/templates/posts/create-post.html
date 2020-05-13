@@ -7,7 +7,7 @@
   <hr>
   <div class="card-body">
     <div class="table-responsive">
-      <form action="{% url 'posts:create-like' %}" method="POST">
+      <form action="{% url 'posts:create-post' %}" method="POST">
         {% csrf_token %}
         <div class="form-group">
           <label for="comment">Content<span style="color: red">*</span> :</label>
