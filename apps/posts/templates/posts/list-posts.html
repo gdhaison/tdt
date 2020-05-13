@@ -12,17 +12,47 @@
           <div class="content">
             <p><strong>Posted by:</strong> {{post.user.username}} <strong>at</strong> {{post.pub_date}}</p>
             <h5><span class="glyphicon glyphicon-time"></span></h5>
-            <p>{{post.content}}</p>
+            <p><h3>{{post.content}}</h3></p>
             <br>
             <p><strong>{{post.like_set.count}}</strong> Likes</p>
             <br>
           </div>
+          
+          {% if post.id in liked %}
+            <a href="{% url 'posts:delete-like' post.id %}" class="btn btn-secondary">Liked</a>
+          {% else %}
             <form action="{% url 'posts:create-like' %}" method="POST">
               {% csrf_token %}
               <input type="hidden" id="UserId" name="user" value="{{user.id}}">
               <input type="hidden" id="PostId" name="post" value="{{post.id}}">
               <button class="btn btn-primary" type="submit">Like</button>
             </form>
+          {% endif %}
+
+          <form action="{% url 'posts:create-comment' %}" method="POST" id="cmt-form">
+            {% csrf_token %}
+            <input class="form-control" rows="5" name="content" id="cmt" required></input>
+            <input type="hidden" id="UserId" name="user" value="{{user.id}}">
+            <input type="hidden" id="PostId" name="post" value="{{post.id}}">
+          </form>
+          {% for comment in post.comment_set.all %}
+            <div class="row">
+              <div class="col-md-2">
+                <div class="thumbnail">
+                  <img class="img-fluid user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                </div>
+              </div>
+              
+              <div class="col-md-9">
+                <div class="card">
+                  <div class="card-header"> <strong>{{comment.user.username}}</strong>  <span class="text-muted">commented at 4 hours ago</span>
+                  </div>
+                  <div class="card-body">{{comment.content}}</div>
+                </div>
+              </div>
+            </div>
+            <hr>
+          {% endfor %}
         </div>
       {% endfor %}
     {% else %}
