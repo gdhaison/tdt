@@ -10,11 +10,19 @@
       {% for post in posts %}
         <div class="post">
           <div class="content">
-            <p><strong>Posted by:</strong> {{post.user.name}} <strong>at</strong> {{post.pub_date}}</p>
+            <p><strong>Posted by:</strong> {{post.user.username}} <strong>at</strong> {{post.pub_date}}</p>
             <h5><span class="glyphicon glyphicon-time"></span></h5>
             <p>{{post.content}}</p>
-            <br><br>
+            <br>
+            <p><strong>{{post.like_set.count}}</strong> Likes</p>
+            <br>
           </div>
+            <form action="{% url 'posts:create-like' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" id="UserId" name="user" value="{{user.id}}">
+              <input type="hidden" id="PostId" name="post" value="{{post.id}}">
+              <button class="btn btn-primary" type="submit">Like</button>
+            </form>
         </div>
       {% endfor %}
     {% else %}

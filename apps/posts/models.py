@@ -1,5 +1,5 @@
 from django.db import models
-from apps.users.models import User
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Post(models.Model):
@@ -20,6 +20,14 @@ class Like(models.Model):
 
     def __str__(self):
         return str(self.id)
+    
+    def get_absolute_url(self):
+        return reverse('root', kwargs={})
+
+    class Meta:
+        unique_together = [
+            ("user", "post"),
+        ]
          
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
