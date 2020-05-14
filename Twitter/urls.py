@@ -19,6 +19,12 @@ from django.urls import path
 from apps.users import views as user_views
 from django.contrib.auth import views as auth_views
 from apps.posts.views import (ListPostView, CreatePostView)
+from rest_framework import routers
+from apps.api.views import PostListCreateAPIView, PostDetailUpdateAPIView
+
+router = routers.SimpleRouter()
+router.register('posts', PostListCreateAPIView)
+router.register('posts', PostDetailUpdateAPIView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +32,5 @@ urlpatterns = [
     path('', ListPostView.as_view(), name='root'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('api/', include(router.urls)),
 ]
